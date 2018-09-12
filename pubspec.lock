@@ -43,6 +43,13 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "1.14.11"
+  connectivity:
+    dependency: "direct main"
+    description:
+      name: connectivity
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "0.3.1"
   convert:
     dependency: transitive
     description:
@@ -50,6 +57,13 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "2.0.2"
+  cookie_jar:
+    dependency: transitive
+    description:
+      name: cookie_jar
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "0.0.6"
   crypto:
     dependency: transitive
     description:
@@ -64,13 +78,20 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "0.14.5"
-  cupertino_icons:
+  dio:
     dependency: "direct main"
     description:
-      name: cupertino_icons
+      name: dio
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "0.1.2"
+    version: "1.0.4"
+  event_bus:
+    dependency: "direct main"
+    description:
+      name: event_bus
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "1.0.1"
   flutter:
     dependency: "direct main"
     description: flutter
@@ -382,3 +403,4 @@ packages:
     version: "2.1.15"
 sdks:
   dart: ">=2.0.0-dev.68.0 <3.0.0"
+  flutter: ">=0.1.4 <2.0.0"
