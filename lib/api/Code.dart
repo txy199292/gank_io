@@ -8,6 +8,8 @@ class Code{
   static const NETWORK_TIMEOUT = -2;
   //网络返回数据json解析错误
   static const NETWORK_JSON_EXCEPTION = -3;
+  //未知错误
+  static const NETWORK_UNKNOW = -4;
 
   static const SUCCESS = 200;
   
