@@ -1,13 +1,14 @@
 import 'dart:async';
 import 'package:dio/dio.dart';
+import 'package:event_bus/event_bus.dart';
+import 'package:gank_io/eventbus/HttpErrorEvent.dart';
 import 'package:connectivity/connectivity.dart';
 import 'package:gank_io/config/Config.dart';
 import 'ResultData.dart';
-import 'Code.dart';
 
 class HttpManager {
   static final String basicUrl = ' http://gank.io/api';
-
+  static final EventBus eventBus = new EventBus();
   static Options mOptions = new Options(
       baseUrl: basicUrl, connectTimeout: 5000, receiveTimeout: 3000);
 
@@ -15,13 +16,12 @@ class HttpManager {
   static Future<ResultData> get(String url,
       {Map<String, dynamic> params,
       String baseUrl,
-      Map<String, String> headers,
-      bool noTip = false,
-      String progressTip}) async {
+      Map<String, String> headers}) async {
     var connectivityResult = await (new Connectivity().checkConnectivity());
     //无网络连接
     if (connectivityResult == ConnectivityResult.none) {
-      return new ResultData(Code.errorHandlerFunction(Code.NETWORK_ERROR, '无网络连接', noTip), true, Code.NETWORK_ERROR);
+      eventBus.fire(new HttpErrorEvent('无网络连接'));
+      return new ResultData(true, null, '无网络连接');
     }
     //添加header
     if (headers != null && headers.isNotEmpty) {
@@ -35,19 +35,20 @@ class HttpManager {
     Response response;
     try {
       response = await dio.get(url, data: params, options: mOptions);
-
     } on DioError catch (e) {
-      Response errorResponse;
-      if (e.response != null) {
-        errorResponse = e.response;
-      } else {
-        errorResponse = new Response(statusCode: Code.UNKNOW_ERROR);
-      }
       if (e.type == DioErrorType.CONNECT_TIMEOUT) {
-        errorResponse.statusCode = Code.NETWORK_TIMEOUT;
+        eventBus.fire(new HttpErrorEvent('连接超时'));
+        return new ResultData(true, null, '连接超时');
+      }else if (e.response != null) {
+        eventBus.fire(new HttpErrorEvent(e.message));
+        return new ResultData(true, null,e.message);
+      } else {
+        eventBus.fire(new HttpErrorEvent('未知错误'));
+        return new ResultData(true, null,'未知错误');
       }
-      return new ResultData(Code.errorHandlerFunction(errorResponse.statusCode, e.message, noTip), true, errorResponse.statusCode);
-    }finally{
+
+
+    } finally {
       if (Config.DEBUG) {
         print('请求url: ' + url);
         if (mOptions.headers.toString().isNotEmpty) {
@@ -59,26 +60,24 @@ class HttpManager {
       }
     }
 
-    if(!response.data['error']){
-      return new ResultData(response.data, false, Code.SUCCESS);
-    }else{
-      return new ResultData(Code.errorHandlerFunction(Code.SERVER_ERROR, '服务器内部错误', noTip), true, Code.SUCCESS);
+    if (!response.data['error']) {
+      return new ResultData(false,response.data, null);
+    } else {
+      eventBus.fire(new HttpErrorEvent('服务器内部错误'));
+      return new ResultData(true,null, '服务器内部错误');
     }
-
-
   }
 
   ///post请求
   static Future<ResultData> post(String url,
       {Map<String, dynamic> params,
         String baseUrl,
-        Map<String, String> headers,
-        bool noTip = false,
-        String progressTip}) async {
+        Map<String, String> headers}) async {
     var connectivityResult = await (new Connectivity().checkConnectivity());
     //无网络连接
     if (connectivityResult == ConnectivityResult.none) {
-      return new ResultData(Code.errorHandlerFunction(Code.NETWORK_ERROR, '无网络连接', noTip), true, Code.NETWORK_ERROR);
+      eventBus.fire(new HttpErrorEvent('无网络连接'));
+      return new ResultData(true, null, '无网络连接');
     }
     //添加header
     if (headers != null && headers.isNotEmpty) {
@@ -92,19 +91,20 @@ class HttpManager {
     Response response;
     try {
       response = await dio.post(url, data: params, options: mOptions);
-
     } on DioError catch (e) {
-      Response errorResponse;
-      if (e.response != null) {
-        errorResponse = e.response;
-      } else {
-        errorResponse = new Response(statusCode: Code.UNKNOW_ERROR);
-      }
       if (e.type == DioErrorType.CONNECT_TIMEOUT) {
-        errorResponse.statusCode = Code.NETWORK_TIMEOUT;
+        eventBus.fire(new HttpErrorEvent('连接超时'));
+        return new ResultData(true, null, '连接超时');
+      }else if (e.response != null) {
+        eventBus.fire(new HttpErrorEvent(e.message));
+        return new ResultData(true, null,e.message);
+      } else {
+        eventBus.fire(new HttpErrorEvent('未知错误'));
+        return new ResultData(true, null,'未知错误');
       }
-      return new ResultData(Code.errorHandlerFunction(errorResponse.statusCode, e.message, noTip), true, errorResponse.statusCode);
-    }finally{
+
+
+    } finally {
       if (Config.DEBUG) {
         print('请求url: ' + url);
         if (mOptions.headers.toString().isNotEmpty) {
@@ -116,12 +116,11 @@ class HttpManager {
       }
     }
 
-    if(!response.data['error']){
-      return new ResultData(response.data, false, Code.SUCCESS);
-    }else{
-      return new ResultData(Code.errorHandlerFunction(Code.SERVER_ERROR, '服务器内部错误', noTip), true, Code.SUCCESS);
+    if (!response.data['error']) {
+      return new ResultData(false,response.data, null);
+    } else {
+      eventBus.fire(new HttpErrorEvent('服务器内部错误'));
+      return new ResultData(true,null, '服务器内部错误');
     }
-
-
   }
 }

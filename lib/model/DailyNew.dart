@@ -1,9 +1,9 @@
 import 'package:json_annotation/json_annotation.dart';
-
+part 'DailyNew.g.dart';
 
 @JsonSerializable()
-class DailyNew extends Object with _$DailyNewSerializerMixin{
-  @JsonKey(name: _id)
+class DailyNew {
+  @JsonKey(name: '_id')
   String id;
   String createdAt;
   String desc;

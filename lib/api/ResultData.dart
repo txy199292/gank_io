@@ -1,9 +1,12 @@
 
 class ResultData{
-  var category;
-  bool error;
-  var results;
-  int code;
 
-  ResultData(this.category,this.error,this.results,{this.code});
+
+  bool error;
+  var data;
+  String message;
+
+  ResultData(this.error, this.data, this.message);
+
+
 }

@@ -8,7 +8,7 @@ part of 'DailyNew.dart';
 
 DailyNew _$DailyNewFromJson(Map<String, dynamic> json) {
   return DailyNew(
-      json['id'] as String,
+      json['_id'] as String,
       json['createdAt'] as String,
       json['desc'] as String,
       (json['images'] as List)?.map((e) => e as String)?.toList(),
@@ -21,7 +21,7 @@ DailyNew _$DailyNewFromJson(Map<String, dynamic> json) {
 }
 
 Map<String, dynamic> _$DailyNewToJson(DailyNew instance) => <String, dynamic>{
-      'id': instance.id,
+      '_id': instance.id,
       'createdAt': instance.createdAt,
       'desc': instance.desc,
       'images': instance.images,

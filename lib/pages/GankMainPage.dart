@@ -2,7 +2,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:event_bus/event_bus.dart';
 import 'package:gank_io/eventbus/HttpErrorEvent.dart';
-import 'package:gank_io/api/Code.dart';
+import 'package:gank_io/api/HttpManager.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 
@@ -42,7 +42,7 @@ class _GankMainPageState extends State<GankMainPage> {
   void initState() {
     super.initState();
     pageController = new PageController(initialPage: _currentIndex);
-    errorSubscription = Code.eventBus.on<HttpErrorEvent>().listen((event) {
+    errorSubscription = HttpManager.eventBus.on<HttpErrorEvent>().listen((event) {
       Fluttertoast.showToast(msg: event.message);
     });
   }
