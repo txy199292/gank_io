@@ -1,4 +1,10 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:event_bus/event_bus.dart';
+import 'package:gank_io/eventbus/HttpErrorEvent.dart';
+import 'package:gank_io/api/Code.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+
 
 class GankMainPage extends StatefulWidget {
   @override
@@ -6,6 +12,7 @@ class GankMainPage extends StatefulWidget {
 }
 
 class _GankMainPageState extends State<GankMainPage> {
+  StreamSubscription errorSubscription;
   static const _titles = <String>['每日干货', '干货分类', '美女福利', '我的主页'];
   var _currentTitle = _titles[0];
   var _currentIndex = 0;
@@ -35,12 +42,16 @@ class _GankMainPageState extends State<GankMainPage> {
   void initState() {
     super.initState();
     pageController = new PageController(initialPage: _currentIndex);
+    errorSubscription = Code.eventBus.on<HttpErrorEvent>().listen((event) {
+      Fluttertoast.showToast(msg: event.message);
+    });
   }
 
   @override
   void dispose() {
     ///要在父类方法之前执行
     pageController.dispose();
+    errorSubscription.cancel();
     super.dispose();
   }
 
@@ -106,4 +117,10 @@ class _GankMainPageState extends State<GankMainPage> {
       }
     });
   }
+
+
+
+
+
+
 }

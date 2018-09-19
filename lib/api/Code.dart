@@ -7,9 +7,11 @@ class Code{
   //网络超时
   static const NETWORK_TIMEOUT = -2;
   //网络返回数据json解析错误
-  static const NETWORK_JSON_EXCEPTION = -3;
+  static const JSON_EXCEPTION_ERROR = -3;
+  //服务器错误
+  static const SERVER_ERROR = -4;
   //未知错误
-  static const NETWORK_UNKNOW = -4;
+  static const UNKNOW_ERROR = -5;
 
   static const SUCCESS = 200;
   
@@ -17,7 +19,7 @@ class Code{
 
   static String errorHandlerFunction(int code,String message,bool noTip){
     if(noTip) return message;
-    eventBus.fire(new HttpErrorEvent(code, message));
+    eventBus.fire(new HttpErrorEventHttpErrorEvent(code, message));
     return message;
   }
 
