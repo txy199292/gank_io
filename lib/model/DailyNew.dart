@@ -2,7 +2,7 @@ import 'package:json_annotation/json_annotation.dart';
 part 'DailyNew.g.dart';
 
 @JsonSerializable()
-class DailyNew {
+class DailyNew{
   @JsonKey(name: '_id')
   String id;
   String createdAt;
