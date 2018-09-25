@@ -4,6 +4,7 @@ import 'package:event_bus/event_bus.dart';
 import 'package:gank_io/eventbus/HttpErrorEvent.dart';
 import 'package:gank_io/api/HttpManager.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:gank_io/pages/dailyNews/DailyNewsPage.dart';
 
 
 class GankMainPage extends StatefulWidget {
@@ -68,9 +69,7 @@ class _GankMainPageState extends State<GankMainPage> {
         body: new PageView(
           controller: pageController,
           children: <Widget>[
-            new Center(
-              child: new Text(_titles[0]),
-            ),
+            new DailyNewsPage(),
             new Center(
               child: new Text(_titles[1]),
             ),
