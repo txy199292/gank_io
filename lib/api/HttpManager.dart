@@ -1,10 +1,12 @@
 import 'dart:async';
+import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:event_bus/event_bus.dart';
 import 'package:gank_io/eventbus/HttpErrorEvent.dart';
 import 'package:connectivity/connectivity.dart';
 import 'package:gank_io/config/Config.dart';
 import 'ResultData.dart';
+
 
 class HttpManager {
   static final String basicUrl = 'http://gank.io/api/';

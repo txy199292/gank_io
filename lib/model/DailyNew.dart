@@ -15,9 +15,12 @@ class DailyNew{
   bool used;
   String who;
 
-  DailyNew(this.id, this.createdAt, this.desc, this.images, this.publishedAt,
-      this.source, this.type, this.url, this.used, this.who);
+  DailyNew({this.id, this.createdAt, this.desc, this.images, this.publishedAt,
+      this.source, this.type, this.url, this.used, this.who});
 
   factory DailyNew.fromJson(Map<String, dynamic> json) => _$DailyNewFromJson(json);
+
+
+  Map<String, dynamic> toJson() => _$DailyNewToJson(this);
 
 }

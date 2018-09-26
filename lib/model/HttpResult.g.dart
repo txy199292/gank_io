@@ -8,11 +8,16 @@ part of 'HttpResult.dart';
 
 HttpResult _$HttpResultFromJson(Map<String, dynamic> json) {
   return HttpResult(
-      (json['category'] as List)?.map((e) => e as String)?.toList(),
-      json['error'] as bool,
-      json['results'] == null
-          ? null
-          : Category.fromJson(json['results'] as Map<String, dynamic>));
+      category: (json['category'] as List)?.map((e) => e as String)?.toList(),
+      error: json['error'] as bool,
+      results: (json['results'] as Map<String, dynamic>)?.map((k, e) =>
+          MapEntry(
+              k,
+              (e as List)
+                  ?.map((e) => e == null
+                      ? null
+                      : DailyNew.fromJson(e as Map<String, dynamic>))
+                  ?.toList())));
 }
 
 Map<String, dynamic> _$HttpResultToJson(HttpResult instance) =>

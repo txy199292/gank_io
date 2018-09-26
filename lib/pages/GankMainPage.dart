@@ -65,6 +65,7 @@ class _GankMainPageState extends State<GankMainPage> {
             style: new TextStyle(color: Colors.white),
           ),
           centerTitle: true,
+          elevation: 0.0,
         ),
         body: new PageView(
           controller: pageController,

@@ -8,16 +8,16 @@ part of 'DailyNew.dart';
 
 DailyNew _$DailyNewFromJson(Map<String, dynamic> json) {
   return DailyNew(
-      json['_id'] as String,
-      json['createdAt'] as String,
-      json['desc'] as String,
-      (json['images'] as List)?.map((e) => e as String)?.toList(),
-      json['publishedAt'] as String,
-      json['source'] as String,
-      json['type'] as String,
-      json['url'] as String,
-      json['used'] as bool,
-      json['who'] as String);
+      id: json['_id'] as String,
+      createdAt: json['createdAt'] as String,
+      desc: json['desc'] as String,
+      images: (json['images'] as List)?.map((e) => e as String)?.toList(),
+      publishedAt: json['publishedAt'] as String,
+      source: json['source'] as String,
+      type: json['type'] as String,
+      url: json['url'] as String,
+      used: json['used'] as bool,
+      who: json['who'] as String);
 }
 
 Map<String, dynamic> _$DailyNewToJson(DailyNew instance) => <String, dynamic>{
