@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:event_bus/event_bus.dart';
 import 'package:gank_io/eventbus/HttpErrorEvent.dart';
 import 'package:gank_io/api/HttpManager.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -31,11 +30,11 @@ class _GankMainPageState extends State<GankMainPage> {
         backgroundColor: Colors.lightBlue),
     new BottomNavigationBarItem(
         icon: Icon(Icons.image),
-        title: Text(_titles[1]),
+        title: Text(_titles[2]),
         backgroundColor: Colors.lightBlue),
     new BottomNavigationBarItem(
         icon: Icon(Icons.person),
-        title: Text(_titles[1]),
+        title: Text(_titles[3]),
         backgroundColor: Colors.lightBlue)
   ];
 
@@ -117,10 +116,5 @@ class _GankMainPageState extends State<GankMainPage> {
       }
     });
   }
-
-
-
-
-
 
 }

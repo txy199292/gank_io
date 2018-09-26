@@ -4,6 +4,7 @@ import 'package:gank_io/api/Api.dart';
 import 'package:gank_io/model/HttpResult.dart';
 import 'package:gank_io/model/DailyNew.dart';
 import 'package:gank_io/Resource/Dimens.dart';
+import 'package:gank_io/pages/commom/CommomWebPage.dart';
 
 class DailyNewsPage extends StatefulWidget {
   @override
@@ -44,46 +45,55 @@ class DailyNewsState extends State<DailyNewsPage> {
       margin: EdgeInsets.fromLTRB(8.0, 8.0, 8.0, 0.0),
       child: new InkWell(
         onTap: (){
-          print('点击');
+          Navigator.of(context).push(new MaterialPageRoute(builder: (context){
+            return new CommomWebPage(dailyNew.desc, dailyNew.url);
+          }));
         },
         child: new Container(
           padding: EdgeInsets.all(8.0),
-          child: new Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+          child: new Row(
             children: <Widget>[
-              new Container(
-                margin: Dimens.textMargin,
-                child: new Row(
-                  children: <Widget>[
-                    new Container(child: new Icon(Icons.timer),margin: EdgeInsets.fromLTRB(0.0, 0.0, 4.0, 0.0),),
-                    new Expanded(child: new Text(_getTimeStr(dailyNew.publishedAt))),
-                  ],
-                ),
-              ),
-              new Container(
-                margin: Dimens.textMargin,
-                child: new Text(
-                  dailyNew.desc,
-                  textAlign: TextAlign.left,
-                ),
-              ),
-              new Container(
-                margin: Dimens.textMargin,
-                child: new Row(
-                  children: <Widget>[
-                    new Text(
-                      '作者:',
-                      style: new TextStyle(color: Colors.grey),
+              new Expanded(child: new Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  new Container(
+                    margin: Dimens.textMargin,
+                    child: new Row(
+                      children: <Widget>[
+                        new Container(child: new Icon(Icons.timer),margin: EdgeInsets.fromLTRB(0.0, 0.0, 4.0, 0.0),),
+                        new Expanded(child: new Text(_getTimeStr(dailyNew.publishedAt))),
+                      ],
                     ),
-                    new Text(
-                      dailyNew.who,
-                      style: new TextStyle(color: Colors.lightBlue),
+                  ),
+                  new Container(
+                    margin: Dimens.textMargin,
+                    child: new Text(
+                      dailyNew.desc,
+                      textAlign: TextAlign.left,
                     ),
-                  ],
-                ),
+                  ),
+                  new Container(
+                    margin: Dimens.textMargin,
+                    child: new Row(
+                      children: <Widget>[
+                        new Text(
+                          '作者:',
+                          style: new TextStyle(color: Colors.grey),
+                        ),
+                        new Text(
+                          dailyNew.who,
+                          style: new TextStyle(color: Colors.lightBlue),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
               ),
+              ),
+              //注意 Image控件 当url为空时 不会显示  大小为0
+              new Image.network((dailyNew.images == null || dailyNew.images.length == 0)?'':dailyNew.images[0],width: 80.0,height: 80.0,)
             ],
-          ),
+          )
         ),
       ),
     );

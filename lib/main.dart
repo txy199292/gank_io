@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gank_io/pages/GankMainPage.dart';
+import 'package:gank_io/pages/commom/GankMainPage.dart';
 
 void main() => runApp(new MyApp());
 
