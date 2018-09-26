@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gank_io/api/HttpManager.dart';
 import 'package:gank_io/api/Api.dart';
-import 'dart:convert';
 import 'package:gank_io/model/HttpResult.dart';
 import 'package:gank_io/model/DailyNew.dart';
 import 'package:gank_io/Resource/Dimens.dart';
@@ -30,17 +29,17 @@ class DailyNewsState extends State<DailyNewsPage> {
     });
   }
 
-  ListView getDailyList(List<DailyNew> dailyNews) {
+  ListView _getDailyList(List<DailyNew> dailyNews) {
     List<Widget> items = new List();
     dailyNews.forEach((dailyNew) {
-      items.add(buildItem(dailyNew));
+      items.add(_buildItem(dailyNew));
     });
     return new ListView(
       children: items,
     );
   }
 
-  Widget buildItem(DailyNew dailyNew) {
+  Widget _buildItem(DailyNew dailyNew) {
     return new Card(
       margin: EdgeInsets.fromLTRB(8.0, 8.0, 8.0, 0.0),
       child: new InkWell(
@@ -57,7 +56,7 @@ class DailyNewsState extends State<DailyNewsPage> {
                 child: new Row(
                   children: <Widget>[
                     new Container(child: new Icon(Icons.timer),margin: EdgeInsets.fromLTRB(0.0, 0.0, 4.0, 0.0),),
-                    new Expanded(child: new Text(dailyNew.publishedAt)),
+                    new Expanded(child: new Text(_getTimeStr(dailyNew.publishedAt))),
                   ],
                 ),
               ),
@@ -90,6 +89,13 @@ class DailyNewsState extends State<DailyNewsPage> {
     );
   }
 
+  String _getTimeStr(String str){
+    DateTime dateTime =  DateTime.parse(str);
+    return '${dateTime.year}年${dateTime.month}月${dateTime.day}日' ;
+  }
+
+
+
   @override
   Widget build(BuildContext context) {
     if (_categories.length == 0) {
@@ -104,7 +110,7 @@ class DailyNewsState extends State<DailyNewsPage> {
         tabs.add(new Tab(text: category));
       });
       _dailyNews.forEach((key, value) {
-        widgets.add(getDailyList(value));
+        widgets.add(_getDailyList(value));
       });
 
       return new DefaultTabController(
