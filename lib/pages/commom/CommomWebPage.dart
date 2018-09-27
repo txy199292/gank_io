@@ -23,17 +23,11 @@ class CommomWebPageState extends State<CommomWebPage> {
   void initState() {
     super.initState();
     flutterWebviewPlugin.close();
-    /*_onUrlChanged = flutterWebviewPlugin.onUrlChanged.listen((url) {
-      setState(() {
-        isLoading = false;
-      });
-    });*/
     _onStateChanged = flutterWebviewPlugin.onStateChanged.listen(
       (WebViewStateChanged state) {
         switch (state.type) {
           case WebViewState.shouldStart:
-            // 准备加载  可以考虑下showdialog
-
+            // 准备加载
             break;
           case WebViewState.startLoad:
             // 开始加载
@@ -47,12 +41,11 @@ class CommomWebPageState extends State<CommomWebPage> {
         }
       },
     );
+
   }
 
   @override
   void dispose() {
-    //界面销毁时取消监听
-    //_onUrlChanged.cancel();
     _onStateChanged.cancel();
     flutterWebviewPlugin.dispose();
     super.dispose();
@@ -62,6 +55,7 @@ class CommomWebPageState extends State<CommomWebPage> {
   Widget build(BuildContext context) {
     //获取当前state所属的widget
     var appBar = new AppBar(
+      iconTheme: new IconThemeData(color: Colors.white),
       title: new Text(
         widget.title,
         style: TextStyle(color: Colors.white),
