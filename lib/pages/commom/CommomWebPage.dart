@@ -61,14 +61,15 @@ class CommomWebPageState extends State<CommomWebPage> {
   @override
   Widget build(BuildContext context) {
     //获取当前state所属的widget
-    var appBar = new AppBar(
-      title: new Text(
+    var appBar =  AppBar(
+      title:  Text(
         widget.title,
         style: TextStyle(color: Colors.white),
       ),
+      iconTheme: IconThemeData(color: Colors.white),
     );
 
-    return new WebviewScaffold(
+    return  WebviewScaffold(
       url: widget.url,
       appBar: appBar,
       withJavascript: true,

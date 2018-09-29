@@ -23,14 +23,14 @@ class HttpManager {
         connectTimeout:5000,
         receiveTimeout:3000
     );
-    var connectivityResult = await (new Connectivity().checkConnectivity());
+    var connectivityResult = await ( Connectivity().checkConnectivity());
     //无网络连接
     if (connectivityResult == ConnectivityResult.none) {
-      eventBus.fire(new HttpErrorEvent('无网络连接'));
-      return new ResultData(true, null, '无网络连接');
+      eventBus.fire( HttpErrorEvent('无网络连接'));
+      return  ResultData(true, null, '无网络连接');
     }
 
-    Dio dio = new Dio(mOptions);
+    Dio dio =  Dio(mOptions);
     Response response;
     try {
       if (params != null && params.isNotEmpty) {
@@ -40,14 +40,14 @@ class HttpManager {
       }
     } on DioError catch (e) {
       if (e.type == DioErrorType.CONNECT_TIMEOUT) {
-        eventBus.fire(new HttpErrorEvent('连接超时'));
-        return new ResultData(true, null, '连接超时');
+        eventBus.fire( HttpErrorEvent('连接超时'));
+        return  ResultData(true, null, '连接超时');
       } else if (e.response != null) {
-        eventBus.fire(new HttpErrorEvent(e.message));
-        return new ResultData(true, null, e.message);
+        eventBus.fire( HttpErrorEvent(e.message));
+        return  ResultData(true, null, e.message);
       } else {
-        eventBus.fire(new HttpErrorEvent('未知错误'));
-        return new ResultData(true, null, '未知错误');
+        eventBus.fire( HttpErrorEvent('未知错误'));
+        return  ResultData(true, null, '未知错误');
       }
     } finally {
       if (Config.DEBUG) {
@@ -59,10 +59,10 @@ class HttpManager {
     }
 
     if (!response.data['error']) {
-      return new ResultData(false, response.data, null);
+      return  ResultData(false, response.data, null);
     } else {
-      eventBus.fire(new HttpErrorEvent('服务器内部错误'));
-      return new ResultData(true, null, '服务器内部错误');
+      eventBus.fire( HttpErrorEvent('服务器内部错误'));
+      return  ResultData(true, null, '服务器内部错误');
     }
   }
 
@@ -71,19 +71,19 @@ class HttpManager {
       {Map<String, dynamic> params,
       String baseUrl,
       Map<String, String> headers}) async {
-    Options mOptions= new Options(
+    Options mOptions=  Options(
         baseUrl:basicUrl,
         connectTimeout:5000,
         receiveTimeout:3000
     );
-    var connectivityResult = await (new Connectivity().checkConnectivity());
+    var connectivityResult = await ( Connectivity().checkConnectivity());
     //无网络连接
     if (connectivityResult == ConnectivityResult.none) {
-      eventBus.fire(new HttpErrorEvent('无网络连接'));
-      return new ResultData(true, null, '无网络连接');
+      eventBus.fire( HttpErrorEvent('无网络连接'));
+      return  ResultData(true, null, '无网络连接');
     }
 
-    Dio dio = new Dio(mOptions);
+    Dio dio =  Dio(mOptions);
     Response response;
     try {
       if (params != null && params.isNotEmpty) {
@@ -93,14 +93,14 @@ class HttpManager {
       }
     } on DioError catch (e) {
       if (e.type == DioErrorType.CONNECT_TIMEOUT) {
-        eventBus.fire(new HttpErrorEvent('连接超时'));
-        return new ResultData(true, null, '连接超时');
+        eventBus.fire( HttpErrorEvent('连接超时'));
+        return  ResultData(true, null, '连接超时');
       } else if (e.response != null) {
-        eventBus.fire(new HttpErrorEvent(e.message));
-        return new ResultData(true, null, e.message);
+        eventBus.fire( HttpErrorEvent(e.message));
+        return  ResultData(true, null, e.message);
       } else {
-        eventBus.fire(new HttpErrorEvent('未知错误'));
-        return new ResultData(true, null, '未知错误');
+        eventBus.fire( HttpErrorEvent('未知错误'));
+        return  ResultData(true, null, '未知错误');
       }
     } finally {
       if (Config.DEBUG) {
@@ -121,10 +121,10 @@ class HttpManager {
     }
 
     if (!response.data['error']) {
-      return new ResultData(false, response.data, null);
+      return  ResultData(false, response.data, null);
     } else {
-      eventBus.fire(new HttpErrorEvent('服务器内部错误'));
-      return new ResultData(true, null, '服务器内部错误');
+      eventBus.fire( HttpErrorEvent('服务器内部错误'));
+      return  ResultData(true, null, '服务器内部错误');
     }
   }
 }

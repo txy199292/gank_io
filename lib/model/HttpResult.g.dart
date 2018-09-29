@@ -16,7 +16,7 @@ HttpResult _$HttpResultFromJson(Map<String, dynamic> json) {
               (e as List)
                   ?.map((e) => e == null
                       ? null
-                      : DailyNew.fromJson(e as Map<String, dynamic>))
+                      : Post.fromJson(e as Map<String, dynamic>))
                   ?.toList())));
 }
 

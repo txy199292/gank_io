@@ -1,12 +1,12 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:gank_io/model/DailyNew.dart';
+import 'package:gank_io/model/Post.dart';
 part 'HttpResult.g.dart';
 
 @JsonSerializable()
 class HttpResult {
   List<String> category;
   bool error;
-  Map<String,List<DailyNew>> results;
+  Map<String,List<Post>> results;
 
 
   HttpResult({this.category, this.error, this.results});

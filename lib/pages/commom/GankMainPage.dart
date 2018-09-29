@@ -4,11 +4,13 @@ import 'package:gank_io/eventbus/HttpErrorEvent.dart';
 import 'package:gank_io/api/HttpManager.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:gank_io/pages/dailyNews/DailyNewsPage.dart';
+import 'package:gank_io/pages/welfare/WelfarePage.dart';
+
 
 
 class GankMainPage extends StatefulWidget {
   @override
-  State<StatefulWidget> createState() => new _GankMainPageState();
+  State<StatefulWidget> createState() =>  _GankMainPageState();
 }
 
 class _GankMainPageState extends State<GankMainPage> {
@@ -20,19 +22,19 @@ class _GankMainPageState extends State<GankMainPage> {
   PageController pageController;
   //底部tab控件list
   final List<BottomNavigationBarItem> _bottomTabs = <BottomNavigationBarItem>[
-    new BottomNavigationBarItem(
+     BottomNavigationBarItem(
         icon: Icon(Icons.home),
         title: Text(_titles[0]),
         backgroundColor: Colors.lightBlue),
-    new BottomNavigationBarItem(
+     BottomNavigationBarItem(
         icon: Icon(Icons.tune),
         title: Text(_titles[1]),
         backgroundColor: Colors.lightBlue),
-    new BottomNavigationBarItem(
+     BottomNavigationBarItem(
         icon: Icon(Icons.image),
         title: Text(_titles[2]),
         backgroundColor: Colors.lightBlue),
-    new BottomNavigationBarItem(
+     BottomNavigationBarItem(
         icon: Icon(Icons.person),
         title: Text(_titles[3]),
         backgroundColor: Colors.lightBlue)
@@ -57,32 +59,30 @@ class _GankMainPageState extends State<GankMainPage> {
 
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
-        appBar: new AppBar(
-          title: new Text(
+    return  Scaffold(
+        appBar:  AppBar(
+          title:  Text(
             _currentTitle,
-            style: new TextStyle(color: Colors.white),
+            style:  TextStyle(color: Colors.white),
           ),
           centerTitle: true,
           elevation: 0.0,
         ),
-        body: new PageView(
+        body:  PageView(
           controller: pageController,
           children: <Widget>[
-            new DailyNewsPage(),
-            new Center(
-              child: new Text(_titles[1]),
-            ),
-            new Center(
-              child: new Text(_titles[2]),
-            ),
-            new Center(
-              child: new Text(_titles[3]),
+             DailyNewsPage(),
+             Center(
+               child:  Text(_titles[1]),
+             ),
+             WelfarePage(),
+             Center(
+              child:  Text(_titles[3]),
             ),
           ],
           onPageChanged: _onPageChanged,
         ),
-        bottomNavigationBar: new BottomNavigationBar(
+        bottomNavigationBar:  BottomNavigationBar(
           items: _bottomTabs,
           currentIndex: _currentIndex,
           //默认 tab数量等于3 BottomNavigationBarType.fixed

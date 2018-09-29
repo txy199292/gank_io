@@ -1,13 +1,13 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'DailyNew.dart';
+part of 'Post.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-DailyNew _$DailyNewFromJson(Map<String, dynamic> json) {
-  return DailyNew(
+Post _$PostFromJson(Map<String, dynamic> json) {
+  return Post(
       id: json['_id'] as String,
       createdAt: json['createdAt'] as String,
       desc: json['desc'] as String,
@@ -20,7 +20,7 @@ DailyNew _$DailyNewFromJson(Map<String, dynamic> json) {
       who: json['who'] as String);
 }
 
-Map<String, dynamic> _$DailyNewToJson(DailyNew instance) => <String, dynamic>{
+Map<String, dynamic> _$PostToJson(Post instance) => <String, dynamic>{
       '_id': instance.id,
       'createdAt': instance.createdAt,
       'desc': instance.desc,

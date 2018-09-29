@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gank_io/api/HttpManager.dart';
 import 'package:gank_io/api/Api.dart';
 import 'package:gank_io/model/HttpResult.dart';
-import 'package:gank_io/model/DailyNew.dart';
+import 'package:gank_io/model/Post.dart';
 import 'package:gank_io/Resource/Dimens.dart';
 import 'package:gank_io/pages/commom/CommomWebPage.dart';
 
@@ -12,8 +12,8 @@ class DailyNewsPage extends StatefulWidget {
 }
 
 class DailyNewsState extends State<DailyNewsPage> {
-  List<String> _categories = new List();
-  Map<String, List<DailyNew>> _dailyNews = new Map();
+  List<String> _categories =  List();
+  Map<String, List<Post>> _dailyNews = new Map();
   @override
   void initState() {
     super.initState();
@@ -30,59 +30,59 @@ class DailyNewsState extends State<DailyNewsPage> {
     });
   }
 
-  ListView _getDailyList(List<DailyNew> dailyNews) {
-    List<Widget> items = new List();
+  ListView _getDailyList(List<Post> dailyNews) {
+    List<Widget> items =  List();
     dailyNews.forEach((dailyNew) {
       items.add(_buildItem(dailyNew));
     });
-    return new ListView(
+    return  ListView(
       children: items,
     );
   }
 
-  Widget _buildItem(DailyNew dailyNew) {
-    return new Card(
+  Widget _buildItem(Post dailyNew) {
+    return  Card(
       margin: EdgeInsets.fromLTRB(8.0, 8.0, 8.0, 0.0),
-      child: new InkWell(
+      child:  InkWell(
         onTap: (){
-          Navigator.of(context).push(new MaterialPageRoute(builder: (context){
-            return new CommomWebPage(dailyNew.desc, dailyNew.url);
+          Navigator.of(context).push( MaterialPageRoute(builder: (context){
+            return  CommomWebPage(dailyNew.desc, dailyNew.url);
           }));
         },
-        child: new Container(
+        child:  Container(
           padding: EdgeInsets.all(8.0),
-          child: new Row(
+          child:  Row(
             children: <Widget>[
-              new Expanded(child: new Column(
+               Expanded(child:  Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  new Container(
+                   Container(
                     margin: Dimens.textMargin,
-                    child: new Row(
+                    child:  Row(
                       children: <Widget>[
-                        new Container(child: new Icon(Icons.timer),margin: EdgeInsets.fromLTRB(0.0, 0.0, 4.0, 0.0),),
-                        new Expanded(child: new Text(_getTimeStr(dailyNew.publishedAt))),
+                         Container(child: new Icon(Icons.timer),margin: EdgeInsets.fromLTRB(0.0, 0.0, 4.0, 0.0),),
+                         Expanded(child: new Text(_getTimeStr(dailyNew.publishedAt))),
                       ],
                     ),
                   ),
-                  new Container(
+                   Container(
                     margin: Dimens.textMargin,
-                    child: new Text(
+                    child:  Text(
                       dailyNew.desc,
                       textAlign: TextAlign.left,
                     ),
                   ),
-                  new Container(
+                   Container(
                     margin: Dimens.textMargin,
-                    child: new Row(
+                    child:  Row(
                       children: <Widget>[
-                        new Text(
+                         Text(
                           '作者:',
-                          style: new TextStyle(color: Colors.grey),
+                          style:  TextStyle(color: Colors.grey),
                         ),
-                        new Text(
+                         Text(
                           dailyNew.who,
-                          style: new TextStyle(color: Colors.lightBlue),
+                          style:  TextStyle(color: Colors.lightBlue),
                         ),
                       ],
                     ),
@@ -91,7 +91,7 @@ class DailyNewsState extends State<DailyNewsPage> {
               ),
               ),
               //注意 Image控件 当url为空时 不会显示  大小为0
-              new Image.network((dailyNew.images == null || dailyNew.images.length == 0)?'':dailyNew.images[0],width: 80.0,height: 80.0,)
+               Image.network((dailyNew.images == null || dailyNew.images.length == 0)?'':dailyNew.images[0],width: 80.0,height: 80.0,)
             ],
           )
         ),
@@ -109,28 +109,28 @@ class DailyNewsState extends State<DailyNewsPage> {
   @override
   Widget build(BuildContext context) {
     if (_categories.length == 0) {
-      return new Center(
+      return  Center(
         //圆形进度条
-        child: new CircularProgressIndicator(),
+        child:  CircularProgressIndicator(),
       );
     } else {
-      List<Tab> tabs = new List();
-      List<Widget> widgets = new List();
+      List<Tab> tabs =  List();
+      List<Widget> widgets =  List();
       _categories.forEach((category) {
-        tabs.add(new Tab(text: category));
+        tabs.add( Tab(text: category));
       });
       _dailyNews.forEach((key, value) {
         widgets.add(_getDailyList(value));
       });
 
-      return new DefaultTabController(
+      return  DefaultTabController(
           length: _categories.length,
-          child: new Scaffold(
-            appBar: new AppBar(
+          child:  Scaffold(
+            appBar:  AppBar(
               title: TabBar(
                   tabs: tabs, isScrollable: true, labelColor: Colors.white),
             ),
-            body: new TabBarView(children: widgets),
+            body:  TabBarView(children: widgets),
           ));
     }
     ;
