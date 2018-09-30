@@ -4,6 +4,9 @@ import 'package:gank_io/model/WelfareResult.dart';
 import 'package:gank_io/api/Api.dart';
 import 'package:gank_io/api/HttpManager.dart';
 import 'package:photo_view/photo_view.dart';
+import 'package:gank_io/eventbus/DownloadEvent.dart';
+import 'package:gank_io/widget/LoadingDialog.dart';
+import 'dart:io';
 
 class WelfarePage extends StatefulWidget {
   @override
@@ -31,6 +34,18 @@ class WelfarePageState extends State<WelfarePage> {
       }
     });
     _getImages();
+    HttpManager.eventBus.on<DownloadEvent>().listen((event) {
+      if (event.progress == 0) {
+        showDialog(
+            context: context,
+            barrierDismissible: false,
+            builder: (context) {
+              return new LoadingDialog(text: '下载中');
+            });
+      } else {
+        Navigator.pop(context);
+      }
+    });
   }
 
   void _getImages() {
@@ -64,7 +79,28 @@ class WelfarePageState extends State<WelfarePage> {
             imageProvider: NetworkImage(post.url),
           ),
           onLongPress: () {
-            //todo 长按下载到本地
+            showDialog(
+                context: context,
+                barrierDismissible: false,
+                builder: (context) {
+                  return new AlertDialog(
+                    content: new Text('确定下载该图片?'),
+                    actions: <Widget>[
+                      new FlatButton(
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          },
+                          child: Text('取消')),
+                      new FlatButton(
+                          onPressed: () {
+                            String fileNmae = post.url.split('/').last;
+                            HttpManager.downloadFile(post.url, fileNmae);
+                            Navigator.of(context).pop();
+                          },
+                          child: new Text('确定'))
+                    ],
+                  );
+                });
           },
         ),
       );
