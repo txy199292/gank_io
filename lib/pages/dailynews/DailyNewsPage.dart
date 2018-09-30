@@ -21,10 +21,15 @@ class DailyNewsState extends State<DailyNewsPage> {
       HttpResult result = HttpResult.fromJson(resultData.data);
       if (result != null && !result.error) {
         setState(() {
-          _categories.clear();
-          _categories.addAll(result.category);
           _dailyNews.clear();
           _dailyNews.addAll(result.results);
+          //这里不能直接用HttpResult.category   和详细数据顺序不一致
+          _categories.clear();
+          _dailyNews.forEach((key,value){
+            _categories.add(key);
+          });
+
+
         });
       }
     });

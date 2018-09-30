@@ -16,7 +16,7 @@ class GankMainPage extends StatefulWidget {
 
 class _GankMainPageState extends State<GankMainPage> {
   StreamSubscription errorSubscription;
-  static const _titles = <String>['每日干货', '干货分类', '美女福利', '我的主页'];
+  static const _titles = <String>['每日干货', '闲读新闻', '美女福利', '我的主页'];
   var _currentTitle = _titles[0];
   var _currentIndex = 0;
 
