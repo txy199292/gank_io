@@ -6,7 +6,7 @@ import 'package:gank_io/api/HttpManager.dart';
 import 'package:photo_view/photo_view.dart';
 import 'package:gank_io/eventbus/DownloadEvent.dart';
 import 'package:gank_io/widget/LoadingDialog.dart';
-import 'dart:io';
+import 'dart:async';
 
 class WelfarePage extends StatefulWidget {
   @override
@@ -111,7 +111,7 @@ class WelfarePageState extends State<WelfarePage> {
   Widget build(BuildContext context) {
     Widget _buildItem(Post post) {
       return new GestureDetector(
-        child: Image.network(post.url, width: 100.0, fit: BoxFit.cover),
+        child: Image.network(post.url, fit: BoxFit.cover),
         onTap: () {
           showPhoto(post, context);
         },

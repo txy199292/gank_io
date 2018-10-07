@@ -5,6 +5,7 @@ import 'package:gank_io/api/HttpManager.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:gank_io/pages/dailyNews/DailyNewsPage.dart';
 import 'package:gank_io/pages/welfare/WelfarePage.dart';
+import 'package:gank_io/pages/free_time_news/FreeTimeNewsPage.dart';
 
 
 
@@ -73,9 +74,7 @@ class _GankMainPageState extends State<GankMainPage> {
           controller: pageController,
           children: <Widget>[
              DailyNewsPage(),
-             Center(
-               child:  Text(_titles[1]),
-             ),
+             FreeTimeNewsPage(),
              WelfarePage(),
              Center(
               child:  Text(_titles[3]),

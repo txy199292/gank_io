@@ -12,7 +12,7 @@ import 'package:simple_permissions/simple_permissions.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 class HttpManager {
-  static final String basicUrl = 'http://gank.io/api/';
+  static final String basicUrl = 'http://gank.io/api';
   static final EventBus eventBus = new EventBus();
   static final Options mOptions = new Options(
       baseUrl: basicUrl, connectTimeout: 5000, receiveTimeout: 3000);

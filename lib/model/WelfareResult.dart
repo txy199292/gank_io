@@ -5,7 +5,7 @@ part 'WelfareResult.g.dart';
 @JsonSerializable()
 class WelfareResult {
   bool error;
-  List<Post>results;
+  List<Post> results;
 
 
   WelfareResult({ this.error, this.results});
