@@ -47,7 +47,11 @@ class DailyNewsState extends State<DailyNewsPage> {
 
   Widget _buildItem(Post dailyNew) {
     return  Card(
-      margin: EdgeInsets.fromLTRB(8.0, 8.0, 8.0, 0.0),
+      elevation: 2.0,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.all(Radius.circular(8.0)),
+      ),
+      margin: EdgeInsets.all(8.0),
       child:  InkWell(
         onTap: (){
           Navigator.of(context).push( MaterialPageRoute(builder: (context){
@@ -138,6 +142,6 @@ class DailyNewsState extends State<DailyNewsPage> {
             body:  TabBarView(children: widgets),
           ));
     }
-    ;
+
   }
 }

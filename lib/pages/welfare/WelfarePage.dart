@@ -48,6 +48,12 @@ class WelfarePageState extends State<WelfarePage> {
     });
   }
 
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
   void _getImages() {
     HttpManager.get(Api.WELFARE + '/${_pageSize}/${_page}').then((resultData) {
       WelfareResult result = WelfareResult.fromJson(resultData.data);

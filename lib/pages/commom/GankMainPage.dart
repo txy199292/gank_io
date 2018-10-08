@@ -29,7 +29,7 @@ class _GankMainPageState extends State<GankMainPage> {
         title: Text(_titles[0]),
         backgroundColor: Colors.lightBlue),
      BottomNavigationBarItem(
-        icon: Icon(Icons.tune),
+        icon: Icon(Icons.phone_iphone),
         title: Text(_titles[1]),
         backgroundColor: Colors.lightBlue),
      BottomNavigationBarItem(
