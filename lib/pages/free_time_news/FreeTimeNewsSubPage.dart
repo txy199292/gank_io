@@ -4,6 +4,7 @@ import 'package:gank_io/api/Api.dart';
 import 'package:gank_io/model/FreeTimeCategory.dart';
 import 'package:gank_io/model/FreeTimeSubCategory.dart';
 import 'package:gank_io/model/FreeTimeSubCategoryResult.dart';
+import 'FreeTimeNewsList.dart';
 
 class FreeTimeNewsSubPage extends StatefulWidget {
   FreeTimeCategory _category;
@@ -52,7 +53,7 @@ class FreeTimeNewsSubPageState extends State<FreeTimeNewsSubPage> {
   List<Widget> getContents() {
     _contents.clear();
     _subCategories.forEach((subCategory) {
-      _contents.add(Center(child: Text(subCategory.title)));
+      _contents.add(FreeTimeNewsList(subCategory));
     });
     return _contents;
   }
