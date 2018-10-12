@@ -4,6 +4,7 @@ import 'package:gank_io/model/FreeTimeItemResult.dart';
 import 'package:gank_io/model/FreeTimeItem.dart';
 import 'package:gank_io/api/Api.dart';
 import 'package:gank_io/api/HttpManager.dart';
+import 'package:gank_io/pages/commom/CommomWebPage.dart';
 
 class FreeTimeNewsList extends StatefulWidget {
   FreeTimeSubCategory _subCategory;
@@ -74,7 +75,11 @@ class FreeTimeNewsListState extends State<FreeTimeNewsList> {
               borderRadius: BorderRadius.all(Radius.circular(8.0))),
           margin: const EdgeInsets.all(8.0),
           child: InkWell(
-            onTap: () {},
+            onTap: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) {
+                return CommomWebPage(item.title, item.url);
+              }));
+            },
             child: Row(
               children: <Widget>[
                 SizedBox(
@@ -94,9 +99,11 @@ class FreeTimeNewsListState extends State<FreeTimeNewsList> {
                     )),
                 Expanded(
                     child: Image.network(
-                        (item.cover == null || item.cover == "none") ?"http://img.zcool.cn/community/010ad7575faad10000012e7e0be5bb.gif":item.cover,
-                      height: 120.0,
-                      fit: BoxFit.fill,
+                  (item.cover == null || item.cover == "none")
+                      ? "http://img.zcool.cn/community/010ad7575faad10000012e7e0be5bb.gif"
+                      : item.cover,
+                  height: 120.0,
+                  fit: BoxFit.fill,
                 ))
               ],
             ),
