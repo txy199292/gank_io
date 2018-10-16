@@ -2,7 +2,7 @@
 
 a flutter gank.io app
 
-## Getting Started
+## 截图
 
-For help getting started with Flutter, view our online
-[documentation](https://flutter.io/).
+ ![index](https://github.com/txy199292/gank_io/raw/master/screenshot/Screenshot_1539675517.png)
+
