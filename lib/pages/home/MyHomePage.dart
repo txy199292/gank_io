@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:gank_io/pages/home/AboutPage.dart';
+import 'package:gank_io/pages/home/SubmitPage.dart';
 import 'package:image_picker/image_picker.dart';
 
 class MyHomePage extends StatefulWidget {
@@ -143,6 +144,9 @@ class MyHomePageState extends State<MyHomePage> {
                 case '我的设置':
                   break;
                 case '提交干货':
+                  Navigator.push(context, MaterialPageRoute(builder: (context) {
+                    return SubmitPage();
+                  }));
                   break;
                 case '项目地址':
                   break;
