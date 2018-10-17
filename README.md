@@ -18,6 +18,6 @@ a flutter gank.io app
 
 类型 | 二维码
 -------- | ---
-**Apk二维码**|![](https://raw.githubusercontent.com/CarGuo/GSYGithubAppFlutter/master/download.png)
+**Apk二维码**|![](hhttps://github.com/txy199292/gank_io/raw/master/screenshot/download.png)
 
 
