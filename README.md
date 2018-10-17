@@ -6,6 +6,8 @@ a flutter gank.io app
 特别感谢[干货集中营](https://gank.io/)为本应用提供Api
 
 本应用主要参考了以下两位大佬的部分代码
+
+
 https://github.com/ZQ330093887/GankFlutter
 https://github.com/CarGuo/GSYGithubAppFlutter
 
