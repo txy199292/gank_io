@@ -32,6 +32,11 @@ class AboutPage extends StatelessWidget {
                 ],
               ),
               Padding(padding: const EdgeInsets.all(8.0)),
+              Text('本项目地址:\n'),
+              Padding(padding: const EdgeInsets.all(8.0)),
+              LinkText('https://github.com/txy199292/gank_io',
+                  'https://github.com/txy199292/gank_io', Colors.green),
+              Padding(padding: const EdgeInsets.all(8.0)),
               Text(
                   '本应用为Flutter版本Gank.io客户端，应供个人学习交流之用。\n\n特别感谢Gank.io为本应用提供Api:\n'),
               LinkText('https://gank.io/', 'https://gank.io/', Colors.green),

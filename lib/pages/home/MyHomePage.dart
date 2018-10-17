@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:gank_io/pages/commom/CommomWebPage.dart';
 import 'package:gank_io/pages/home/AboutPage.dart';
 import 'package:gank_io/pages/home/SubmitPage.dart';
 import 'package:image_picker/image_picker.dart';
@@ -149,6 +150,10 @@ class MyHomePageState extends State<MyHomePage> {
                   }));
                   break;
                 case '项目地址':
+                  Navigator.push(context, MaterialPageRoute(builder: (context) {
+                    return CommomWebPage(
+                        '项目地址', 'https://github.com/txy199292/gank_io');
+                  }));
                   break;
                 case '关于应用':
                   Navigator.push(context, MaterialPageRoute(builder: (context) {
